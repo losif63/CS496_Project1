@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +35,14 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var tempListTitles = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I")
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false)
+        var content = inflater.inflate(R.layout.fragment_contact, container, false)
+        var listview = content.findViewById<ListView>(R.id.contactList)
+        val adapter = ArrayAdapter<String>(inflater.context, android.R.layout.simple_list_item_1, tempListTitles)
+        listview.adapter = adapter
+        return content
     }
 
     companion object {

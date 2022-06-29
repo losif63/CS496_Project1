@@ -5,14 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ContactFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/contactList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CONTACT TAB"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="40dp"/>
-
+        android:layout_height="match_parent" />
 </FrameLayout>
