@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,9 +41,10 @@ class ContactFragment : Fragment() {
         var tempListTitles = arrayOf("A", "B", "C", "D", "E", "F", "G", "H", "I")
         // Inflate the layout for this fragment
         var content = inflater.inflate(R.layout.fragment_contact, container, false)
-        var listview = content.findViewById<ListView>(R.id.contactList)
-        val adapter = ArrayAdapter<String>(inflater.context, android.R.layout.simple_list_item_1, tempListTitles)
-        listview.adapter = adapter
+        var recyclerview = content.findViewById<RecyclerView>(R.id.recycleView)
+        recyclerview.layoutManager = LinearLayoutManager(inflater.context)
+        //val adapter = ArrayAdapter<String>(inflater.context, android.R.layout.simple_list_item_1, tempListTitles)
+        recyclerview.adapter = RecycleAdapter(tempListTitles)
         return content
     }
 
