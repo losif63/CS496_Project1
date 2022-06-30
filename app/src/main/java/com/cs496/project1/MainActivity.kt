@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
+    // Push branch test
     var tabTitle = arrayOf("CONTACTS", "IMAGES", "MUSIC")
 
     override fun onCreate(savedInstanceState: Bundle?) {
