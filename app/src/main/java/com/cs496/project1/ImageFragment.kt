@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +36,22 @@ class ImageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var tempList : ArrayList<String> = arrayListOf()
+        var index = 1
+
+        while(index <= 100) {
+            tempList.add(index.toString())
+            index++
+        }
+        var tempListTitles = tempList.toTypedArray()
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_image, container, false)
+        var content = inflater.inflate(R.layout.fragment_image, container, false)
+        var recycleview = content.findViewById<RecyclerView>(R.id.recyclerview2)
+        recycleview.layoutManager = GridLayoutManager(inflater.context, 3)
+        recycleview.adapter = RecycleAdapter2(tempListTitles)
+        return content
     }
 
     companion object {
