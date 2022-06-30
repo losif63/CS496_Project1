@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //* Block 1: Check Permissions
         val status = ContextCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS")
         if(status == PackageManager.PERMISSION_GRANTED) {
             Log.d("test", "permission granted")
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
             Log.d("test", "permission denied")
         }
-        //*/
+
 
         var pager = findViewById<ViewPager2>(R.id.viewPager2)
         val t1 = findViewById<TabLayout>(R.id.tabLayout2)
@@ -49,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("test", "permission granted")
         } else {
             Log.d("test", "permission denied")
+
         }
     }
 }

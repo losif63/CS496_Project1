@@ -1,15 +1,21 @@
 package com.cs496.project1
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contentprovidertest.RecycleAdapter
+import contacts.core.Contacts
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,6 +33,7 @@ class ContactFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var recyclerview: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -39,21 +46,15 @@ class ContactFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var tempList : ArrayList<String> = arrayListOf()
-        var index = 1
-
-        while(index <= 100) {
-            tempList.add("Hello, World! " + index.toString())
-            index++
-        }
-        var tempListTitles = tempList.toTypedArray()
-
-        // Inflate the layout for this fragment
         var content = inflater.inflate(R.layout.fragment_contact, container, false)
-        var recyclerview = content.findViewById<RecyclerView>(R.id.recycleView)
+        recyclerview = content.findViewById<RecyclerView>(R.id.recycleView)
         recyclerview.layoutManager = LinearLayoutManager(inflater.context)
-        recyclerview.adapter = RecycleAdapter(tempListTitles)
+
+        val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_CONTACTS")
+        if(status == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted")
+            initializeContactData()
+        }
 
         return content
     }
@@ -78,5 +79,26 @@ class ContactFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted")
+            initializeContactData()
+        } else {
+            Log.d("test", "permission denied")
+
+        }
+    }
+
+    private fun initializeContactData() {
+        var contacts = Contacts(requireContext()).query().find()
+        var myAdapter = RecycleAdapter(contacts.toTypedArray())
+        recyclerview.adapter = myAdapter
     }
 }
