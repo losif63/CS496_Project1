@@ -52,8 +52,11 @@ class ContactFragment : Fragment() {
 
         val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_CONTACTS")
         if(status == PackageManager.PERMISSION_GRANTED) {
-            Log.d("test", "permission granted")
+            Log.d("test", "permission granted1")
             initializeContactData()
+        } else {
+            Log.d("test", "permission denied1")
+            requestPermissions(arrayOf<String>("android.permission.READ_CONTACTS"), 100)
         }
 
         return content
@@ -88,10 +91,10 @@ class ContactFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d("test", "permission granted")
+            Log.d("test", "permission granted2")
             initializeContactData()
         } else {
-            Log.d("test", "permission denied")
+            Log.d("test", "permission denied2")
 
         }
     }
