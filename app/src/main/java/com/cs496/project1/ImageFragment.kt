@@ -1,5 +1,6 @@
 package com.cs496.project1
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -104,5 +105,15 @@ class ImageFragment : Fragment() {
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(recyclerview.context, 3)
         recyclerview.layoutManager = layoutManager
         recyclerview.adapter = myAdapter
+        myAdapter.setOnItemClickListener(object: RecycleAdapter2.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                android.util.Log.d("test", "location1")
+                val intent = Intent(recyclerview.context, ImageActivity::class.java)
+                android.util.Log.d("test", "location2")
+                intent.putExtra("imageUri", photoList[position].assertFileStringUri.toString())
+                android.util.Log.d("test", "location3")
+                startActivity(intent)
+            }
+        })
     }
 }

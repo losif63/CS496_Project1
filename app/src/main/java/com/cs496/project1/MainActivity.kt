@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        supportActionBar?.hide()
 
         var pager = findViewById<ViewPager2>(R.id.viewPager2)
         val t1 = findViewById<TabLayout>(R.id.tabLayout2)
@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
             tab, position ->
                 tab.text = tabTitle[position]
         }.attach()
+
+
     }
 
 }

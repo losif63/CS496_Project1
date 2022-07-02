@@ -16,6 +16,15 @@ import com.cs496.project1.R
 class RecycleAdapter2 (private val dataSet: Array<pictureContent>) :
     RecyclerView.Adapter<RecycleAdapter2.ViewHolder>()
 {
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    private lateinit var mListener: OnItemClickListener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
+
     /** Provides a reference to the views for each data item.  */
     public class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         internal val imageView : ImageView
@@ -35,7 +44,9 @@ class RecycleAdapter2 (private val dataSet: Array<pictureContent>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var imageSize = Resources.getSystem().displayMetrics.widthPixels / 3
         Glide.with(holder.imageView.context).load(dataSet[position].assertFileStringUri).centerCrop().override(imageSize).into(holder.imageView)
-        //Glide.with(holder.imageView.context).load(dataSet[position].assertFileStringUri).placeholder(R.drawable.placeholder).centerCrop().override(imageSize).into(holder.imageView)
+        holder.imageView.setOnClickListener {
+            mListener.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
