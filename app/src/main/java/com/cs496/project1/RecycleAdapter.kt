@@ -8,24 +8,35 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.cs496.project1.R
+import com.google.android.material.card.MaterialCardView
 import contacts.core.entities.Contact
 import contacts.core.util.phoneList
 
 class RecycleAdapter (private val dataSet: Array<Contact>) :
     RecyclerView.Adapter<RecycleAdapter.ViewHolder>()
 {
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    private lateinit var mListener: OnItemClickListener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        mListener = listener
+    }
+
     /** Provides a reference to the views for each data item.  */
     public class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        private val container: View
+
         internal val emailTitle: TextView
         internal val emailPreview: TextView
         internal val imageView : ImageView
+        internal val container : MaterialCardView
 
         init {
-//            container = view.findViewById(R.id.list_view_item_container)
             emailTitle = view.findViewById(R.id.email_title)
             emailPreview = view.findViewById(R.id.email_preview)
             imageView = view.findViewById(R.id.sender_icon)
+            container = view.findViewById(R.id.list_view_item_container)
         }
     }
 
@@ -46,7 +57,9 @@ class RecycleAdapter (private val dataSet: Array<Contact>) :
         }
         if(dataSet[position].photoUri != null)
             holder.imageView.setImageURI(dataSet[position].photoUri)
-
+        holder.container.setOnClickListener{
+            mListener.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -107,11 +107,8 @@ class ImageFragment : Fragment() {
         recyclerview.adapter = myAdapter
         myAdapter.setOnItemClickListener(object: RecycleAdapter2.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                android.util.Log.d("test", "location1")
                 val intent = Intent(recyclerview.context, ImageActivity::class.java)
-                android.util.Log.d("test", "location2")
                 intent.putExtra("imageUri", photoList[position].assertFileStringUri.toString())
-                android.util.Log.d("test", "location3")
                 startActivity(intent)
             }
         })

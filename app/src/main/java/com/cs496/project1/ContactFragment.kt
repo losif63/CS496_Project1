@@ -1,6 +1,8 @@
 package com.cs496.project1
 
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -15,7 +17,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contentprovidertest.RecycleAdapter
+import com.example.contentprovidertest.RecycleAdapter2
 import contacts.core.Contacts
+import contacts.core.ContactsFields
+import contacts.core.asc
 import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
@@ -100,8 +105,18 @@ class ContactFragment : Fragment() {
     }
 
     private fun initializeContactData() {
-        var contacts = Contacts(requireContext()).query().find()
+        var contacts = Contacts(requireContext()).query().orderBy(
+            ContactsFields.DisplayNamePrimary.asc()
+        ).find()
         var myAdapter = RecycleAdapter(contacts.toTypedArray())
         recyclerview.adapter = myAdapter
+        myAdapter.setOnItemClickListener(object: RecycleAdapter.OnItemClickListener{
+            override fun onItemClick(position: Int) {
+                val intent : Intent = Intent(Intent.ACTION_VIEW)
+                val id = contacts[position].id
+                intent.data = Uri.parse(ContactsContract.Contacts.CONTENT_URI.toString() + "/" + id)
+                startActivity(intent)
+            }
+        })
     }
 }
