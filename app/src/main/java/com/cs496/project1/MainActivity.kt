@@ -1,12 +1,8 @@
 package com.cs496.project1
 
-import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.PackageManagerCompat
+import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -14,11 +10,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
 
     var tabTitle = arrayOf("CONTACTS", "IMAGES", "MUSIC")
+    lateinit var swipeRefreshLayout : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.hide()
 
         var pager = findViewById<ViewPager2>(R.id.viewPager2)
         val t1 = findViewById<TabLayout>(R.id.tabLayout2)
@@ -29,7 +25,11 @@ class MainActivity : AppCompatActivity() {
                 tab.text = tabTitle[position]
         }.attach()
 
-
+        swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            this.recreate()
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
 }
