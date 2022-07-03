@@ -1,17 +1,13 @@
-package com.example.contentprovidertest
+package com.cs496.project1
 
 import android.content.res.Resources
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.CodeBoy.MediaFacer.mediaHolders.pictureContent
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.cs496.project1.R
 
 class RecycleAdapter2 (private val dataSet: Array<pictureContent>) :
     RecyclerView.Adapter<RecycleAdapter2.ViewHolder>()

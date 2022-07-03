@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var swipeRefreshLayout : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        com.cs496.project1.player.initializePlayerService(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
             this.recreate()
             swipeRefreshLayout.isRefreshing = false
         }
-    }
 
+        //Test music player
+        //com.cs496.project1.player.test.test(this)
+
+    }
 }

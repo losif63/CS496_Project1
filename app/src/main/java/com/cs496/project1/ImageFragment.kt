@@ -9,17 +9,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.CodeBoy.MediaFacer.MediaFacer
 import com.CodeBoy.MediaFacer.PictureGet
 import com.CodeBoy.MediaFacer.mediaHolders.pictureContent
-import com.example.contentprovidertest.RecycleAdapter2
-import java.net.URI
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -105,8 +100,6 @@ class ImageFragment : Fragment() {
         var photoList = allPhotos.toTypedArray()
 
         var myAdapter = RecycleAdapter2(photoList)
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(recyclerview.context, 3)
-        recyclerview.layoutManager = layoutManager
         recyclerview.adapter = myAdapter
         myAdapter.setOnItemClickListener(object: RecycleAdapter2.OnItemClickListener{
             override fun onItemClick(position: Int) {

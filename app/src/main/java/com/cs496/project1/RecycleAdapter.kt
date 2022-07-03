@@ -1,13 +1,11 @@
-package com.example.contentprovidertest
+package com.cs496.project1
 
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.cs496.project1.R
 import com.google.android.material.card.MaterialCardView
 import contacts.core.entities.Contact
 import contacts.core.util.phoneList
