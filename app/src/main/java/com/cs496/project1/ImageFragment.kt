@@ -2,6 +2,7 @@ package com.cs496.project1
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,12 +12,14 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.CodeBoy.MediaFacer.MediaFacer
 import com.CodeBoy.MediaFacer.PictureGet
 import com.CodeBoy.MediaFacer.mediaHolders.pictureContent
 import com.example.contentprovidertest.RecycleAdapter2
+import java.net.URI
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -107,8 +110,11 @@ class ImageFragment : Fragment() {
         recyclerview.adapter = myAdapter
         myAdapter.setOnItemClickListener(object: RecycleAdapter2.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                val intent = Intent(recyclerview.context, ImageActivity::class.java)
-                intent.putExtra("imageUri", photoList[position].assertFileStringUri.toString())
+                val intent = Intent()
+                intent.action = Intent.ACTION_VIEW
+                val photoURI = photoList[position].assertFileStringUri.toString()
+                intent.setDataAndType(Uri.parse(photoURI), "image/*")
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 startActivity(intent)
             }
         })
