@@ -57,7 +57,7 @@ class MusicAdapter(private val dataSet: Array<audioContent>) :
         val durationMin = duration / 60
         val durationSec = (duration % 60).toString().padStart(2, '0')
         holder.durationTextView.text = "$durationMin:$durationSec"
-        Glide.with(holder.albumImageView.context).load(dataSet[position].art_uri).centerCrop().into(holder.albumImageView)
+        Glide.with(holder.albumImageView.context).load(dataSet[position].art_uri).centerCrop().placeholder(R.drawable.music).into(holder.albumImageView)
         holder.container.setOnClickListener {
             mListener.onItemClick(position)
         }

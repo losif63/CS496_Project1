@@ -18,15 +18,15 @@
             android:id="@+id/imageViewAlbumArt"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:loadAlbumArtBackgroundImage="@{viewModel.albumArtUri}"
-            app:placeholder="@{@drawable/ic_launcher_foreground}"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            app:loadAlbumArtBackgroundImage="@{viewModel.albumArtUri}"
+            app:placeholder="@{@drawable/music}" />
 
         <FrameLayout
             android:id="@+id/frameLayout"
@@ -39,6 +39,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
+                android:id="@+id/frameLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -121,21 +122,23 @@
             android:id="@+id/VisualizerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/music_player"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout">
 
-            <com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer
+            <com.gauravk.audiovisualizer.visualizer.WaveVisualizer
                 xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/visualizer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                custom:avDensity="0.75"
+                custom:avDensity="0.2"
                 custom:avType="fill"
-                custom:avColor="@color/av_deep_orange"
-                custom:avSpeed="fast"/>
+                custom:avColor="#40FFFFFF"
+                custom:avSpeed="fast"
+                custom:avGravity="bottom"
+                android:layout_marginTop="90dp"
+                android:layout_marginBottom="90dp"/>
 
         </FrameLayout>
 

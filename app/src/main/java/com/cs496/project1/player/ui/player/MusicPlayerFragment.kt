@@ -18,8 +18,10 @@ import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.cs496.project1.R
 import com.cs496.project1.databinding.FragmentMusicPlayerBinding
 import com.cs496.project1.player.getInstance
+import com.gauravk.audiovisualizer.visualizer.BarVisualizer
 import com.gauravk.audiovisualizer.visualizer.BlastVisualizer
 import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer
+import com.gauravk.audiovisualizer.visualizer.WaveVisualizer
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 object CommonBindingAdapters{
@@ -42,7 +44,7 @@ class MusicPlayerFragment : Fragment() {
     }
 
     private lateinit var viewModel: MusicPlayerViewModel
-    private lateinit var mVisualizer : CircleLineVisualizer
+    private lateinit var mVisualizer : WaveVisualizer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

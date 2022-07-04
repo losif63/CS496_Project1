@@ -54,7 +54,7 @@ class RecycleAdapter3 (private val dataSet: Array<MusicItem>) :
 
     override fun onBindViewHolder(holder: RecycleAdapter3.ViewHolder, position: Int) {
 
-        Glide.with(holder.albumArt.context).load(dataSet[position].metadata.art_uri).centerCrop().into(holder.albumArt)
+        Glide.with(holder.albumArt.context).load(dataSet[position].metadata.art_uri).centerCrop().placeholder(R.drawable.music).into(holder.albumArt)
         holder.trackNumber.text = (position+1).toString()
         holder.trackTitle.text = dataSet[position].metadata.title
         val duration = dataSet[position].metadata.duration / 1000
