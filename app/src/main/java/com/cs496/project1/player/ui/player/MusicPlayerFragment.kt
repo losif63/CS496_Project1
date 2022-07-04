@@ -44,7 +44,7 @@ class MusicPlayerFragment : Fragment() {
     }
 
     private lateinit var viewModel: MusicPlayerViewModel
-    private lateinit var mVisualizer : WaveVisualizer
+    private lateinit var mVisualizer : CircleLineVisualizer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
