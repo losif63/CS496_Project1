@@ -66,7 +66,7 @@ class MusicFragment : Fragment() {
             Log.d("test", "permission granted")
             initializeMusicData()
         } else {
-            Log.d("test", "permission denied")
+            Log.d("test", "permission denied 12347")
             requestPermissions(arrayOf<String>("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.RECORD_AUDIO"), 100)
         }
 

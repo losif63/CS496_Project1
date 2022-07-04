@@ -49,12 +49,13 @@ class ImageFragment : Fragment() {
         recyclerview.layoutManager = GridLayoutManager(inflater.context, 3)
 
         val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_EXTERNAL_STORAGE")
-        if(status == PackageManager.PERMISSION_GRANTED) {
+        val status2 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.RECORD_AUDIO")
+        if(status == PackageManager.PERMISSION_GRANTED && status2 == PackageManager.PERMISSION_GRANTED) {
             Log.d("test", "permission granted")
             initializeImageData()
         } else {
-            Log.d("test", "permission denied")
-            requestPermissions(arrayOf<String>("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE"), 100)
+            Log.d("test", "permission denied 12347")
+            requestPermissions(arrayOf<String>("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.RECORD_AUDIO"), 100)
         }
 
         return content

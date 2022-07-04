@@ -81,54 +81,39 @@ class MusicPlayerFragment : Fragment() {
         visualizerManager.start(surfaceView, arrayOf(
             CircleSolidRenderer(
                 paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    color = Color.parseColor("#40FFFFFF")
+                    color = Color.parseColor("#66ffffff")
                 },
                 amplification = .45f
             ),
             CircleBarRenderer(
                 paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    strokeWidth = 4f
+                    strokeWidth = 8f
                     color = Color.parseColor("#efe3f2ff")
                 },
-                modulationStrength = 1f,
+                modulationStrength = 0.9f,
                 type = CircleBarRenderer.Type.TYPE_A_AND_TYPE_B,
-                amplification = 1f, divisions = 8
+                divisions = 8,
+                amplification = 1f
             ),
             CircleBarRenderer(
                 paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
                     strokeWidth = 5f
                     color = Color.parseColor("#e3f2ff")
                 },
-                modulationStrength = 0.1f,
-                amplification = 1.2f,
-                divisions = 8
+                modulationStrength = 0.3f,
+                amplification = 5.0f
             ),
             CircleWaveRenderer(
                 paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
                     strokeWidth = 6f
                     color = Color.WHITE
                 },
-                modulationStrength = 0.2f,
                 type = CircleWaveRenderer.Type.TYPE_B,
+                modulationStrength = 0.4f,
                 amplification = 1f,
                 animator = NierAnimator(
                     interpolator = LinearInterpolator(),
-                    duration = 20000,
-                    values = floatArrayOf(0f, -360f)
-                )
-            ),
-            CircleWaveRenderer(
-                paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-                    strokeWidth = 6f
-                    color = Color.parseColor("#7fcee7fe")
-                },
-                modulationStrength = 0.2f,
-                type = CircleWaveRenderer.Type.TYPE_B,
-                amplification = 1f,
-                divisions = 8,
-                animator = NierAnimator(
-                    interpolator = LinearInterpolator(),
-                    duration = 20000,
+                    duration = 90000,
                     values = floatArrayOf(0f, -360f)
                 )
             )
