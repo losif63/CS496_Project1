@@ -61,7 +61,8 @@ class MusicFragment : Fragment() {
         })
 
         val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_EXTERNAL_STORAGE")
-        if(status == PackageManager.PERMISSION_GRANTED) {
+        val status2 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.RECORD_AUDIO")
+        if(status == PackageManager.PERMISSION_GRANTED && status2 == PackageManager.PERMISSION_GRANTED) {
             Log.d("test", "permission granted")
             initializeMusicData()
         } else {
