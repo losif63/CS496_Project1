@@ -117,5 +117,27 @@
             </LinearLayout>
         </FrameLayout>
 
+        <FrameLayout
+            android:id="@+id/VisualizerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/music_player"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayout">
+
+            <com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/visualizer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:avDensity="0.75"
+                custom:avType="fill"
+                custom:avColor="@color/av_deep_orange"
+                custom:avSpeed="fast"/>
+
+        </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

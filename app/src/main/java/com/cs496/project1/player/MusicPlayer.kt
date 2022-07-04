@@ -5,6 +5,7 @@ import android.media.AudioManager
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
 import com.CodeBoy.MediaFacer.MediaFacer
 import com.CodeBoy.MediaFacer.mediaHolders.audioContent
@@ -92,6 +93,10 @@ class MusicPlayer(val context: Context) {
 
             this.next()
         }
+    }
+
+    fun getPlayer() : MediaPlayer{
+        return player
     }
 
     fun add(musicItem: MusicItem) {

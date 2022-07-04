@@ -17,6 +17,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.cs496.project1.R
 import com.cs496.project1.databinding.FragmentMusicPlayerBinding
+import com.cs496.project1.player.getInstance
+import com.gauravk.audiovisualizer.visualizer.BlastVisualizer
+import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer
 import jp.wasabeef.glide.transformations.BlurTransformation
 
 object CommonBindingAdapters{
@@ -39,6 +42,7 @@ class MusicPlayerFragment : Fragment() {
     }
 
     private lateinit var viewModel: MusicPlayerViewModel
+    private lateinit var mVisualizer : CircleLineVisualizer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +53,17 @@ class MusicPlayerFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MusicPlayerViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        mVisualizer = binding.visualizer
+        val audioSessionId = getInstance().getPlayer().audioSessionId
+        if(audioSessionId != -1) mVisualizer.setAudioSessionId(audioSessionId)
+
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(mVisualizer != null) mVisualizer.release()
     }
 
 }
