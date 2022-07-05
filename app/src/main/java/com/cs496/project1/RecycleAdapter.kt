@@ -55,6 +55,7 @@ class RecycleAdapter (private val dataSet: Array<Contact>) :
         }
         if(dataSet[position].photoUri != null)
             holder.imageView.setImageURI(dataSet[position].photoUri)
+        else holder.imageView.setImageResource(R.drawable.account)
         holder.container.setOnClickListener{
             mListener.onItemClick(position)
         }
