@@ -60,14 +60,15 @@ class MusicFragment : Fragment() {
             }
         })
 
-        val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_EXTERNAL_STORAGE")
-        val status2 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.RECORD_AUDIO")
-        if(status == PackageManager.PERMISSION_GRANTED && status2 == PackageManager.PERMISSION_GRANTED) {
-            Log.d("test", "permission granted")
+        val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_CONTACTS")
+        val status2 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_EXTERNAL_STORAGE")
+        val status3 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.RECORD_AUDIO")
+        if(status == PackageManager.PERMISSION_GRANTED && status2 == PackageManager.PERMISSION_GRANTED && status3 == PackageManager.PERMISSION_GRANTED) {
+            Log.d("test", "permission granted1")
             initializeMusicData()
         } else {
-            Log.d("test", "permission denied 12347")
-            requestPermissions(arrayOf<String>("android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.RECORD_AUDIO"), 100)
+            Log.d("test", "permission denied1")
+            requestPermissions(arrayOf<String>("android.permission.READ_CONTACTS", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.RECORD_AUDIO"), 100)
         }
 
         return content

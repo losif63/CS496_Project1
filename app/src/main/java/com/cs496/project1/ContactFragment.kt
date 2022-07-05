@@ -50,12 +50,14 @@ class ContactFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(inflater.context)
 
         val status = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_CONTACTS")
-        if(status == PackageManager.PERMISSION_GRANTED) {
+        val status2 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.READ_EXTERNAL_STORAGE")
+        val status3 = ContextCompat.checkSelfPermission(inflater.context, "android.permission.RECORD_AUDIO")
+        if(status == PackageManager.PERMISSION_GRANTED && status2 == PackageManager.PERMISSION_GRANTED && status3 == PackageManager.PERMISSION_GRANTED) {
             Log.d("test", "permission granted1")
             initializeContactData()
         } else {
             Log.d("test", "permission denied1")
-            requestPermissions(arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+            requestPermissions(arrayOf<String>("android.permission.READ_CONTACTS", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.RECORD_AUDIO"), 100)
         }
 
         return content
